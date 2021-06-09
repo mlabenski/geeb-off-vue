@@ -1,27 +1,83 @@
 <template>
 <v-app-bar density="compact"  dark>
-<v-img src="https://i.ibb.co/KGv8hBF/geeb-off-logo-text.png" max-height="160" max-width="225" @click="$router.push('/')"></v-img>
-    <v-spacer></v-spacer>
+  <v-app-bar-nav-icon @click.stop="openMobileNavBar = !openMobileNavBar" v-if="showMobileNav"></v-app-bar-nav-icon>
+
+<v-img  src="https://i.ibb.co/KGv8hBF/geeb-off-logo-text.png" max-height="160" max-width="225" @click="$router.push('/')"></v-img>
+    <v-spacer v-if="!showMobileNav"></v-spacer>
     <v-btn v-show="showOverlay =='false'" @click="Logout">Log out </v-btn>
-    <v-btn text>Spectate</v-btn>
-    <v-btn class="mr-3">Help</v-btn>
-    <v-btn v-show="showOverlay =='true'" @click="login">Log in </v-btn>
-    <v-btn v-show="showOverlay=='false'" class="mr-3" @click="$router.push('account-details')" >Account Details</v-btn>
-    <v-divider inset vertical></v-divider>
+    <v-btn v-if="!showMobileNav" text>Spectate</v-btn>
+    <v-btn v-if="!showMobileNav"  class="mr-3">Help</v-btn>
+    <v-btn v-if="!showMobileNav" v-show="showOverlay=='false'" class="mr-3" @click="$router.push('account-details')" >Account Details</v-btn>
+    <v-divider inset vertical ></v-divider>
           <v-btn
         class="mr-4 ml-5"
         color="primary"
         plain
       >
+        <span v-show="showOverlay == 'true'" @click="login">Log in</span>
+      </v-btn>
+                <v-btn
+        class="mr-4 ml-5"
+        color="primary"
+        plain
+      >
         <v-icon left icon="mdi-handshake-outline"></v-icon>
-  
-        <span v-show="showOverlay == 'false'" @click="showQueueModal">Join Queue</span>
         <span v-show="showOverlay == 'true'" @click="showCreateAccountModal">Create Account</span>
       </v-btn>
 </v-app-bar>
+
+<v-navigation-drawer
+        v-model="openMobileNavBar"
+        absolute
+        bottom
+        temporary
+        style="background-color: transparent"
+      >
+      <v-container>
+      <v-row style="padding-bottom: 10%;">
+              <v-btn
+        flat
+        size="large"
+        color="green"
+      >
+        Spectate Match
+      </v-btn>
+      </v-row>
+      <v-row style="padding-bottom: 10%;" >
+              <v-btn
+        flat
+        color="green"
+        size="large"
+      >
+        Join Queue
+      </v-btn>
+      </v-row>
+      <v-row style="padding-bottom: 10%;">
+              <v-btn
+        flat
+        color="green"
+        size="large"
+        v-show="showOverlay == 'false'"
+      >
+        Logout
+      </v-btn>
+      </v-row>
+      </v-container>
+
+      </v-navigation-drawer>
+
+
 </template>
+<style>
+     @media only screen and (max-width: 1250px) {
+        v-btn {
+          font-size: 10px;
+        }
+    }
+</style>
 
 <script>
+// either shrink the menu (collapse) for smaller phones, or we change the font size.
 import { ref, onBeforeMount } from 'vue';
 import * as firebase from 'firebase';
 export default{
@@ -48,10 +104,31 @@ export default{
       Logout
     }
     },
+    mounted() {
+      this.windowWidth = window.innerWidth
+      window.addEventListener('resize', () => {
+        this.windowWidth = window.innerWidth
+      })
+    },
     data: function() {
         return { 
-          
+          openMobileNavBar: false,
+          group: null,
+          windowWidth: null,
+          showMobileNav: false,
         }
+    },
+    watch: {
+      group() {
+        this.openMobileNavBar = false;
+      },
+      windowWidth(){
+        if(this.windowWidth < 800){
+          this.showMobileNav = true;
+        } else {
+          this.showMobileNav = false;
+        }
+      }
     },
     methods: {
         showQueueModal() {
@@ -62,7 +139,7 @@ export default{
         },
         login() {
           this.$emit('login', 'true')
-        }
+        },
     }
 }
 </script>

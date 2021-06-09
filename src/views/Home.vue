@@ -55,16 +55,34 @@ export default {
       this.displayQueueModal = true;
     },
     clickedCreateAccount() {
-      console.log("switch main card to create account")
-      this.displayCreateAccount = true;
+      if(this.displayLoginAccount == true) {
+        this.displayLoginAccount = false;
+        this.displayCreateAccount = true;
+      }
+      else if(this.displayCreateAccount == true){
+        this.displayCreateAccount = false;
+      }
+      else {
+        this.displayCreateAccount = true;
+      }
     },
     clickedLeaveModel() {
       console.log("left model")
       this.displayQueueModal = false
+      this.displayLoginAccount = false;
     },
     clickedLogin(){
       console.log("logging in to dis bitch")
-      this.displayLoginAccount = true;
+      if(this.displayCreateAccount == true) {
+        this.displayCreateAccount = false;
+        this.displayLoginAccount = true;
+      }
+      else if(this.displayLoginAccount == true){
+        this.displayLoginAccount = false;
+      }
+      else {
+        this.displayLoginAccount = true;
+      }
     }
   },
   components: {

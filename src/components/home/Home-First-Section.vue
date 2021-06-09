@@ -1,7 +1,7 @@
 <template>
     <div>
-        <v-container >
-            <v-row id="landing-page" style="padding-bottom: 50px; padding-top: 2%">
+        <v-container fluid >
+            <v-row id="landing-page" div="first-landing-page">
                 <v-col>
                 </v-col>
                 <v-col>
@@ -19,59 +19,61 @@
                         <v-btn class="computer-resize" style="align:center;">In game: 6</v-btn>
                     </v-card-actions>
                     </v-card>
-                    <v-card id="createAccount" v-if="displayCreateAccount" class="pa-5 z-index-check" title max-width="600" elevation="24">
+        <v-card id="createAccount" v-if="displayCreateAccount" class="pa-5 z-index-check" title max-width="600" elevation="24">
                         <v-img class="leftbox"
+                        id="geeb-off-login-img"
                         lazy-src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         max-height="120"
                         max-width="90"
                         src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         ></v-img>
-                    <v-card-title class="bannerText rightbox" style="max-height: 150px">Create an Account</v-card-title>
-                     <form @submit.prevent="Register">
-                     <v-card-header-text>  <v-card-text style="margin-top: 125px; margin-left: 86px; font-size: 25px; font-weight: 800; text-align:center;">Email</v-card-text>
-                           
-                     <input type="text" v-model="email" style="margin-left: 219px;" placeholder="Press tab to enter data:"/>
+                    <v-card-title class="bannerText rightbox" style="max-height: 150px">Register an Acc</v-card-title>
+                    <form @submit.prevent="Register">
+                     <v-card-header-text>  <v-card-text class="email-text">
+                         Email</v-card-text>
+                     <input type="text" v-model="email" class="email-form" placeholder="Press tab to enter data:"/>
                      </v-card-header-text>
-                     <v-card-header-text>  <v-card-text style="margin-top: 20px; margin-left: 72px; font-size: 25px; font-weight: 800; text-align:center;">Password</v-card-text>
-                     <input type="password" v-model="password1" style="margin-left: 205px;" placeholder="Press tab to enter password:"/>
+                     <v-card-header-text>  <v-card-text class="password-text">
+                         Password</v-card-text>
+                     <input type="password" v-model="password1" class="password-form" placeholder="Press tab to enter password:"/>
                      </v-card-header-text>
                            <v-btn
         flat
+        type="submit"
         color="secondary"
-        style="margin-left: 40%; margin-bottom: 25px;"
+        class="login-btn-submit"
       >
         Submit w/ Enter
-      </v-btn>   <input type="submit" value="Register"></form><v-btn style="margin-left:70px; margin-bottom: 20px; z-index:30"
-          icon="mdi-exit-to-app"
-          color="red"> </v-btn>
+      </v-btn></form>
             <v-divider class="mx-4"></v-divider>
         </v-card>
 
-        <v-card id="createAccount" v-if="displayLoginAccount" class="pa-5 z-index-check" title max-width="600" elevation="24">
+        <v-card id="login" v-if="displayLoginAccount" class="pa-5 z-index-check" title max-width="600" elevation="24">
                         <v-img class="leftbox"
+                        id="geeb-off-login-img"
                         lazy-src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         max-height="120"
                         max-width="90"
                         src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         ></v-img>
-                    <form @submit.prevent="Login">
                     <v-card-title class="bannerText rightbox" style="max-height: 150px">Login to Geeboff</v-card-title>
-                     <v-card-header-text>  <v-card-text style="margin-top: 125px; margin-left: 86px; font-size: 25px; font-weight: 800; text-align:center;">Email</v-card-text>
-                     <input type="text" v-model="loginEmail" style="margin-left: 219px;" placeholder="Press tab to enter data:"/>
+                    <form @submit.prevent="Login">
+                     <v-card-header-text>  <v-card-text class="email-text">
+                         Email</v-card-text>
+                     <input type="text" v-model="loginEmail" class="email-form" placeholder="Press tab to enter data:"/>
                      </v-card-header-text>
-                     <v-card-header-text>  <v-card-text style="margin-top: 20px; margin-left: 72px; font-size: 25px; font-weight: 800; text-align:center;">Password</v-card-text>
-                     <input type="password" v-model="loginPassword" style="margin-left: 205px; margin-bottom: 50px" placeholder="Press tab to enter password:"/>
+                     <v-card-header-text>  <v-card-text class="password-text">
+                         Password</v-card-text>
+                     <input type="password" v-model="loginPassword" class="password-form" placeholder="Press tab to enter password:"/>
                      </v-card-header-text>
                            <v-btn
         flat
+        type="submit"
         color="secondary"
-        style="margin-left: 40%; margin-bottom: 25px;"
+        class="login-btn-submit"
       >
         Submit w/ Enter
-      </v-btn>     <input type="submit" value="Login"></form><v-btn style="margin-left:70px; margin-bottom: 20px; z-index:30"
-          icon="mdi-exit-to-app"
-          color="red"
-        />
+      </v-btn></form>
             <v-divider class="mx-4"></v-divider>
         </v-card>
                 </v-col>
@@ -230,25 +232,13 @@ export default {
         background-size: cover;
         position: relative;
         z-index: 1;
+        padding-bottom: 50px; 
+        padding-top: 2%
     }
     .bannerText {
         font-size: 2.3em;
     }
-    @media only screen and (max-width: 900px) {
-        .bannerText {
-            font-size: 1.8em;
-        }
-        .z-index-check {
-            width: 300px;
-            height: 400px;
-        }
-        #landing-page {
-            height: 60vh;
-        }
-        .computer-resize {
-            left: -55px;
-        }
-    }
+
     .z-index-check {
         z-index: 1;
         background-color: rgba(255, 255, 255, 0.753);
@@ -270,10 +260,104 @@ export default {
         height: 200px;
         z-index: 10;
     }
-                .middlebox{
-                float:left; 
-                background:Green;
-                width:50%;
-                height:280px;
-            }
+    .email-text {
+    margin-top: 125px; 
+    margin-left: 16.9%; 
+    font-size: 25px; 
+    font-weight: 800; 
+    text-align:center;
+    }
+    .password-text {
+    margin-top: 20px; 
+    margin-left: 16.0%; 
+    font-size: 25px; 
+    font-weight: 800; 
+    text-align:center;
+    }
+    .email-form {
+    margin-left: 42%;
+    }
+    .password-form {
+    margin-left: 42%; 
+    margin-bottom: 5%;
+    }
+    .login-btn-submit {
+      left: 43%;
+    }
+    .login-btn-exit {
+        
+        margin-left:70px; 
+        z-index:30;
+    }
+    @media only screen and (max-width: 1900) {
+        
+    }
+    @media only screen and (max-width: 1600px) {
+        .bannerText{
+            font-size: 2em;
+        }
+        .rightbox {
+        float: right;
+        width: 60%;
+        height: 200px;
+        z-index: 10;
+        }
+        .email-text {
+        margin-left: 22.9%; 
+        }
+        .password-text {
+        margin-left: 22.0%; 
+        }
+    }
+    @media only screen and (max-width: 1250px) {
+        .email-text {
+        margin-left: 0%; 
+        }
+        #geeb-off-login-img {
+            display: none;
+        }
+        .rightbox {
+        width: 100%;
+        padding-left: 28%;
+        height: 200px;
+        z-index: 10;
+        }
+        .password-text {
+        margin-top: 20px; 
+        margin-left: 0%; 
+        }
+        .email-form {
+        margin-left: 26%;
+        }
+        .password-form {
+        margin-left: 26%;
+        margin-bottom: 5%;
+        }
+        .login-btn-submit {
+            left: 25%;
+    }
+    }
+
+    @media only screen and (max-width: 900px) {
+        .first-landing-page {
+            padding-bottom: 15%;
+        }
+    }
+
+        @media only screen and (max-width: 900px) {
+        .bannerText {
+            font-size: 1.6em;
+        }
+        .z-index-check {
+            width: 300px;
+            height: 400px;
+        }
+        #landing-page {
+            height: 60vh;
+        }
+        .computer-resize {
+            left: -55px;
+        }
+    }
+
 </style>
