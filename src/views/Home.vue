@@ -1,7 +1,7 @@
 <template>
-  <Menu v-on:send="clickedQueue"></Menu>
+  <Menu v-on:send="clickedQueue" v-on:createAccount="clickedCreateAccount" v-on:login="clickedLogin"></Menu>
   <QueueForm v-if="displayQueueModal==true" @leaveModel="clickedLeaveModel"></QueueForm>
-  <FirstSection :queuedPlayers="queuedPlayersList" :currentPlayers="currentMatchPlayersList"></FirstSection>
+  <FirstSection :displayLoginAccount="displayLoginAccount" :queuedPlayers="queuedPlayersList" :currentPlayers="currentMatchPlayersList" :displayCreateAccount="displayCreateAccount"></FirstSection>
   <SecondSection></SecondSection>
 
       <button class="logout" @click="Logout">Logout</button>
@@ -22,7 +22,9 @@ export default {
     return {
       queuedPlayersList: [],
       currentMatchPlayersList: [],
-      displayQueueModal: false
+      displayQueueModal: false,
+      displayCreateAccount: false,
+      displayLoginAccount: false
     }
   },
   created() {
@@ -52,9 +54,17 @@ export default {
       console.log("data is being sent at this point")
       this.displayQueueModal = true;
     },
+    clickedCreateAccount() {
+      console.log("switch main card to create account")
+      this.displayCreateAccount = true;
+    },
     clickedLeaveModel() {
       console.log("left model")
       this.displayQueueModal = false
+    },
+    clickedLogin(){
+      console.log("logging in to dis bitch")
+      this.displayLoginAccount = true;
     }
   },
   components: {

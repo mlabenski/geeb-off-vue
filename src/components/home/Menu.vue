@@ -5,6 +5,7 @@
     <v-btn v-show="showOverlay =='false'" @click="Logout">Log out </v-btn>
     <v-btn text>Spectate</v-btn>
     <v-btn class="mr-3">Help</v-btn>
+    <v-btn v-show="showOverlay =='true'" @click="login">Log in </v-btn>
     <v-btn v-show="showOverlay=='false'" class="mr-3" @click="$router.push('account-details')" >Account Details</v-btn>
     <v-divider inset vertical></v-divider>
           <v-btn
@@ -15,7 +16,7 @@
         <v-icon left icon="mdi-handshake-outline"></v-icon>
   
         <span v-show="showOverlay == 'false'" @click="showQueueModal">Join Queue</span>
-        <span v-show="showOverlay == 'true'" @click="$router.push('register')">Create Account</span>
+        <span v-show="showOverlay == 'true'" @click="showCreateAccountModal">Create Account</span>
       </v-btn>
 </v-app-bar>
 </template>
@@ -49,13 +50,19 @@ export default{
     },
     data: function() {
         return { 
+          
         }
     },
     methods: {
         showQueueModal() {
             this.$emit('send','data');
+        },
+        showCreateAccountModal() {
+          this.$emit('createAccount', 'true')
+        },
+        login() {
+          this.$emit('login', 'true')
         }
     }
-
 }
 </script>
