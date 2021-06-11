@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import firebase from 'firebase';
+import LoadScript from 'vue-plugin-load-script';
 const firebaseConfig = {
     apiKey: "AIzaSyBi2QO7VDArDuwV7F0t_RzHTSvvgenPYJU",
     authDomain: "geeb-off-functions.firebaseapp.com",
@@ -24,5 +25,5 @@ const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(vuetify)
-
+app.use(LoadScript)
 app.mount('#app')

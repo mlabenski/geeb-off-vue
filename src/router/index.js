@@ -22,7 +22,12 @@ const routes = [
       path: '/account-details',
       name: 'AccountDetails',
       component: () => import('../views/Account-Details.vue')
-  },
+    },
+    {
+        path: '/game-room',
+        name: 'GameRoom',
+        component: () => import('../views/game-room/Game-Room.vue')
+    },
   {
     path: '/:catchAll(.*)',
     component: NotFoundComponent,

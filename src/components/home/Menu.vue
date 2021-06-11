@@ -5,7 +5,7 @@
 <v-img  src="https://i.ibb.co/KGv8hBF/geeb-off-logo-text.png" max-height="160" max-width="225" @click="$router.push('/')"></v-img>
     <v-spacer v-if="!showMobileNav"></v-spacer>
     <v-btn v-show="showOverlay =='false'" @click="Logout">Log out </v-btn>
-    <v-btn v-if="!showMobileNav" text>Spectate</v-btn>
+    <v-btn v-if="!showMobileNav"  @click="$router.push('game-room')" text>Spectate</v-btn>
     <v-btn v-if="!showMobileNav"  class="mr-3">Help</v-btn>
     <v-btn v-if="!showMobileNav" v-show="showOverlay=='false'" class="mr-3" @click="$router.push('account-details')" >Account Details</v-btn>
     <v-divider inset vertical ></v-divider>

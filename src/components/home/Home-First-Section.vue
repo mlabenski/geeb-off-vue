@@ -5,7 +5,7 @@
                 <v-col>
                 </v-col>
                 <v-col>
-                    <v-card  v-if="displayCreateAccount == false && displayLoginAccount == false" class="pa-5 z-index-check" title max-width="600" elevation="24">
+                    <v-card  v-if="displayCreateAccount == false && displayLoginAccount == false" class="pa-5 z-index-check" title max-width="800" elevation="24">
                         <v-img
                         lazy-src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         max-height="400"
@@ -236,7 +236,8 @@ export default {
         padding-top: 2%
     }
     .bannerText {
-        font-size: 2.3em;
+        font-size: 1.9em!important;
+        text-align:center;
     }
 
     .z-index-check {
@@ -294,7 +295,7 @@ export default {
     }
     @media only screen and (max-width: 1600px) {
         .bannerText{
-            font-size: 2em;
+            font-size: 1em;
         }
         .rightbox {
         float: right;
@@ -310,6 +311,9 @@ export default {
         }
     }
     @media only screen and (max-width: 1250px) {
+        .computer-resize {
+            left: -45px;
+        }
         .email-text {
         margin-left: 0%; 
         }
