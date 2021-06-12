@@ -1,10 +1,8 @@
 <template>
-  <playerNavBar v-if="currentPlayerList" :newStream="'rupturexx'" :playersArray="currentMatchPlayersList"></playerNavBar>
+  <playerNavBar v-if="currentPlayerList" :newStream="currentPlayerName" :playersArray="currentMatchPlayersList"></playerNavBar>
   <v-container v-if="currentPlayerList" fluid>
     <v-row>
-      <v-sheet color="red" elevation="1" height="75px" :width="timerLength">
-        <h2 style="color: white">Time remaining</h2>
-      </v-sheet>
+      <RoundTimer  :numberOfRounds="numberOfRounds"></RoundTimer>
     </v-row>
     <v-row>
       <v-sheet color="red" elevation="1" height="75px" width="100%">
@@ -15,7 +13,7 @@
           <v-col>
           </v-col>
           <v-col>
-                      <twitchVideo v-if="currentPlayerList" :newStream="'rupturexx'"></twitchVideo>
+                      <twitchVideo v-if="currentPlayerList" :newStream="currentPlayerName"></twitchVideo>
           </v-col>
           <v-col>
           </v-col>
@@ -27,6 +25,7 @@
 <script>
 import twitchVideo from '../../components/game-room/twitch';
 import playerNavBar from '../../components/game-room/players-menu';
+import RoundTimer from '../../components/game-room/round-timer';
 import { db } from '../../main';
 export default {
   created() {
@@ -45,8 +44,9 @@ export default {
     });
     db.collection('currentPlayerDB').onSnapshot((snapshotChange) => {
       this.currentPlayerList = [];
+      this.currentPlayerName = '';
       snapshotChange.forEach((doc) => {
-              this.newTurn = true;
+        this.numberOfRounds = this.numberOfRounds+1;
         this.currentPlayerList.push({
           key: doc.id,
           name: doc.data().user,
@@ -54,52 +54,31 @@ export default {
           failed: doc.data().failed,
           votes: doc.data().votes
         })
+        this.currentPlayerName = doc.data().user;
       })
     })
   },
 
   components: {
     twitchVideo,
-    playerNavBar
+    playerNavBar,
+    RoundTimer
   },
   props: {
     // we either populate with this one, but we lose the realtime data stream
     // or just recreate the firebase stream here
   },
   watch: {
-    newTurn(value){
-      //this should run anytime a new player is sent to the firebase server.
-      if(value){
-        this.timerLength = "100%";
-        this.calculateTimerLength();
-        //maybe we reset the timer? 
-        //reset the time limit, and store it inside a setTimeout to give the server time to reset?
-
-      }
-    }
   },
   methods: {
-      calculateTimerLength(){
-        var countdownPercent = 100;
-        setTimeout(() => {
-          if(this.timer > 1) {
-          this.timer = this.timer-1;
-          countdownPercent = this.timer*.8333;
-          this.timerLength = countdownPercent.toString()+'%';
-          this.calculateTimerLength()
-          }
-        }, 1000)
-      },
   },
   data() {
     return {
      currentMatchPlayersList: [],
      newStream: null,
      currentPlayerList: [],
-     timer: 120,
-     currentUserNumber: null,
-     newTurn: false,
-     timerLength: '100%',
+     numberOfRounds: 0,
+     currentPlayerName: ''
     }
   }
 }
