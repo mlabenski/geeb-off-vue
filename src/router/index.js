@@ -26,7 +26,8 @@ const routes = [
     {
         path: '/game-room',
         name: 'GameRoom',
-        component: () => import('../views/game-room/Game-Room.vue')
+        component: () => import('../views/game-room/Game-Room.vue'),
+        props: true,
     },
   {
     path: '/:catchAll(.*)',

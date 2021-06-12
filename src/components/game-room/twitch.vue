@@ -1,16 +1,10 @@
 <template>
-        <iframe v-if="currentStream"
-    :src="url1+currentStream+url3"
+        <iframe v-if="newStream"
+    :src="url1+newStream+url3"
     height="600px"
     width="900px"
     allowfullscreen="true">
 </iframe>
-      <v-btn
-        outlined
-        color="primary"
-      >
-        Outlined Button
-      </v-btn>
 </template>
 
 <script>
