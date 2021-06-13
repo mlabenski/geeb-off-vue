@@ -1,5 +1,5 @@
 <template>
-        <v-sheet color="red" elevation="1" height="75px" :width="timerLength">
+        <v-sheet color="grey" elevation="1" height="65px" :width="timerLength">
         <h2 style="color: white">{{timer}}</h2>
       </v-sheet>
 </template>
@@ -36,7 +36,9 @@ export default {
             var currentTime = new Date();
             var minutes = currentTime.getMinutes();
             minutes = minutes.toString();
-            minutes = minutes.slice(1);
+            if(minutes.length > 1) {
+                minutes = minutes.slice(1);
+            }
             var seconds = currentTime.getSeconds();
             var under60seconds = ['1','3','5','7','9'];
             var over60seconds = ['0','2','4','6','8'];

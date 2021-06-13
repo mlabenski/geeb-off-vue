@@ -48,6 +48,7 @@ export default {
         }
     },
       created() {
+          //this is def broken cuz we dont check for a user clicking button
             const user = auth.currentUser.uid;
              var docRef= db.collection('users').doc(user);
             docRef.get().then((doc) => {

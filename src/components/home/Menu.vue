@@ -12,6 +12,7 @@
           <v-btn
         class="mr-4 ml-5"
         color="primary"
+        v-show="showOverlay == 'true'"
         plain
       >
         <span v-show="showOverlay == 'true'" @click="login">Log in</span>
@@ -19,6 +20,14 @@
                 <v-btn
         class="mr-4 ml-5"
         color="primary"
+        plain
+      >
+        <span v-show="showOverlay == 'false'"  @click="showQueueModal">Enter Queue</span>
+      </v-btn>
+                <v-btn
+        class="mr-4 ml-5"
+        color="primary"
+        v-show="showOverlay == 'true'"
         plain
       >
         <v-icon left icon="mdi-handshake-outline"></v-icon>
