@@ -5,7 +5,7 @@
       <RoundTimer  :numberOfRounds="numberOfRounds"></RoundTimer>
     </v-row>
     <v-row>
-      <VoteBar></VoteBar>
+      <VoteBar :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
     </v-row>
     <v-row>
         <v-btn flat @click="voteNo">Vote No</v-btn>
@@ -66,6 +66,7 @@ export default {
           votes: doc.data().votes
         })
         this.currentPlayerName = doc.data().user;
+        this.currentPlayerNumberOfVotes = doc.data().votes;
       })
     })
           auth.onAuthStateChanged((user) => {
@@ -119,11 +120,13 @@ export default {
       if(this.allowedVote && !this.userVoted){
         this.userVoted = true;
         this.halfwayUpdate = true;
+        var currentNumVotes = 0;
         db.collection('currentPlayerDB').doc(this.currentPlayerName).get().then(doc => {
-          var currentNumVotes = doc.data().votes;
+          currentNumVotes = doc.data().votes;
           db.collection("currentPlayerDB").doc(this.currentPlayerName).update({
             "votes": currentNumVotes-1
           }).then(() => {
+            this.currentPlayerNumberOfVotes=  currentNumVotes-1;
             console.log("Number of votes has been added");
           })
         });
@@ -140,11 +143,13 @@ export default {
       if(this.allowedVote && !this.userVoted){
         this.halfwayUpdate = true;
         this.userVoted = true;
+        var currentNumVotes = 0;
         db.collection('currentPlayerDB').doc(this.currentPlayerName).get().then(doc => {
-          var currentNumVotes = doc.data().votes;
+          currentNumVotes = doc.data().votes;
           db.collection("currentPlayerDB").doc(this.currentPlayerName).update({
             "votes": currentNumVotes+1
           }).then(() => {
+            this.currentPlayerNumberOfVotes=  currentNumVotes+1;
             console.log("Number of votes has been added");
           })
         });
@@ -165,6 +170,7 @@ export default {
      currentPlayerList: [],
      numberOfRounds: 0,
      currentPlayerName: '',
+     currentPlayerNumberOfVotes: '',
      localUserName: '',
      localUserData: '',
      allowedVote: false,
