@@ -34,9 +34,9 @@
 </template>
 
 <script>
-import { functions } from 'C:/Users/coca_cola/Desktop/vue/geeb-off-vue-new/src/main.js';
-import { auth } from 'C:/Users/coca_cola/Desktop/vue/geeb-off-vue-new/src/main.js';
-import { db } from 'C:/Users/coca_cola/Desktop/vue/geeb-off-vue-new/src/main.js';
+import { functions } from '../../main.js';
+import { auth } from '../../main.js';
+import { db } from '../../main.js';
 
 export default {
     name: "QueueForm",

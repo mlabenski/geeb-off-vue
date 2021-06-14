@@ -8,8 +8,8 @@
       <VoteBar></VoteBar>
     </v-row>
     <v-row>
-        <v-btn flat>Vote No</v-btn>
-        <v-btn flat>Vote Yes</v-btn>
+        <v-btn flat @click="voteNo">Vote No</v-btn>
+        <v-btn flat @click="voteYes">Vote Yes</v-btn>
     </v-row>
         <v-row>
           <v-col>
@@ -29,7 +29,7 @@ import twitchVideo from '../../components/game-room/twitch';
 import playerNavBar from '../../components/game-room/players-menu';
 import RoundTimer from '../../components/game-room/round-timer';
 import { db } from '../../main';
-import { auth } from 'C:/Users/coca_cola/Desktop/vue/geeb-off-vue-new/src/main.js';
+import { auth } from '../../main.js';
 import { VoteBar } from '../../components/game-room/vote-bar'
 
 export default {
@@ -53,7 +53,11 @@ export default {
       this.currentPlayerList = [];
       this.currentPlayerName = '';
       snapshotChange.forEach((doc) => {
-        this.numberOfRounds = this.numberOfRounds+1;
+        if(this.halfwayUpdate == false) {
+          this.numberOfRounds = this.numberOfRounds+1;
+          this.userVoted = false;
+        }
+        this.halfwayUpdate = false;
         this.currentPlayerList.push({
           key: doc.id,
           name: doc.data().user,
@@ -64,14 +68,27 @@ export default {
         this.currentPlayerName = doc.data().user;
       })
     })
-              auth.onAuthStateChanged((user) => {
+          auth.onAuthStateChanged((user) => {
             console.log(`user is ${user}`)
             if (user) {
-              this.localUserData = user;
-              console.log('more testing '+auth.currentUser.uid);
+              this.localUserData = auth.currentUser.uid;
+              var userRef = auth.currentUser.uid;
+              var docRef= db.collection('users').doc(userRef);
+              docRef.get().then((doc) => {
+                 if (doc.exists) {
+                     console.log(doc.data());
+                     this.localUserName = doc.data().displayName;
+                     this.allowedVote = true;
+                 } else {
+                     console.log('no such document')
+                 }
+             }).catch((error) => {
+                 console.log("Error getting document: ", error)
+             });
             }else if (!user) {
               console.log('no user')
             }
+            console.log(this.localUserName);
           });
   },
 
@@ -85,7 +102,6 @@ export default {
         this.$options.components.VoteBar = require('../../components/game-room/vote-bar').default;
   },
   watch: {
-
   },
   methods: {
     isAuthInMatch() {
@@ -100,10 +116,46 @@ export default {
     At the conclusion of the round, a player with negative votes shall be removed.
   */
     voteNo() {
-
+      if(this.allowedVote && !this.userVoted){
+        this.userVoted = true;
+        this.halfwayUpdate = true;
+        db.collection('currentPlayerDB').doc(this.currentPlayerName).get().then(doc => {
+          var currentNumVotes = doc.data().votes;
+          db.collection("currentPlayerDB").doc(this.currentPlayerName).update({
+            "votes": currentNumVotes-1
+          }).then(() => {
+            console.log("Number of votes has been added");
+          })
+        });
+    }
+    else if (!this.allowedVote)
+    {
+      console.log("You must be logged in for this feature")
+    }
+    else if (this.userVoted){
+        console.log('You have already voted for this round:')
+      }
     },
     voteYes() {
-
+      if(this.allowedVote && !this.userVoted){
+        this.halfwayUpdate = true;
+        this.userVoted = true;
+        db.collection('currentPlayerDB').doc(this.currentPlayerName).get().then(doc => {
+          var currentNumVotes = doc.data().votes;
+          db.collection("currentPlayerDB").doc(this.currentPlayerName).update({
+            "votes": currentNumVotes+1
+          }).then(() => {
+            console.log("Number of votes has been added");
+          })
+        });
+    }
+    else if (!this.allowedVote)
+    {
+      console.log("You must be logged in for this feature")
+    }
+    else if (this.userVoted){
+        console.log('You have already voted for this round:')
+      }
     }
   },
   data() {
@@ -114,7 +166,10 @@ export default {
      numberOfRounds: 0,
      currentPlayerName: '',
      localUserName: '',
-     localUserData: ''
+     localUserData: '',
+     allowedVote: false,
+     halfwayUpdate: false,
+     userVoted: false
     }
   }
 }
