@@ -1,11 +1,11 @@
 <template>
     <div>
         <v-container fluid >
-            <v-row id="landing-page" style="z-index: 1">
+            <v-row id="landing-page" div="first-landing-page">
                 <v-col>
                 </v-col>
-                <v-col  style="z-index: 2">
-                    <v-card  v-if="displayCreateAccount == false && displayLoginAccount == false" class="pa-5 z-index-check" title max-width="800" elevation="24">
+                <v-col class="">
+                    <v-card  style=" background-color: rgba(255, 255, 255, 0.753);" v-if="displayCreateAccount == false && displayLoginAccount == false" class="pa-5" title max-width="800" elevation="24">
                         <v-img
                         lazy-src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         max-height="400"
@@ -19,7 +19,7 @@
                         <v-btn class="computer-resize" style="align:center;">In game: 6</v-btn>
                     </v-card-actions>
                     </v-card>
-        <v-card style="z-index: 3" id="createAccount" v-if="displayCreateAccount" class="pa-5 z-index-check" title max-width="600" elevation="24">
+        <v-card id="createAccount" v-if="displayCreateAccount" class="pa-5" title max-width="600" elevation="24">
                         <v-img class="leftbox"
                         id="geeb-off-login-img"
                         lazy-src="https://i.ibb.co/nQy9135/gravity-Bong.png"
@@ -28,12 +28,12 @@
                         src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         ></v-img>
                     <v-card-title class="bannerText rightbox" style="max-height: 150px">Register an Acc</v-card-title>
-                    <form @submit.prevent="Register">
-                     <v-card-header-text>  <v-card-text class="email-text">
+                    <form @submit.prevent="Register" >
+                     <v-card-header-text>  <v-card-text class="email-text ">
                          Email</v-card-text>
-                     <input type="text" v-model="email" class="email-form" placeholder="Press tab to enter data:"/>
+                     <input type="text" v-model="email" class="email-form " placeholder="Press tab to enter data:"/>
                      </v-card-header-text>
-                     <v-card-header-text>  <v-card-text class="password-text">
+                     <v-card-header-text >  <v-card-text class="password-text">
                          Password</v-card-text>
                      <input type="password" v-model="password1" class="password-form" placeholder="Press tab to enter password:"/>
                      </v-card-header-text>
@@ -48,7 +48,7 @@
             <v-divider class="mx-4"></v-divider>
         </v-card>
 
-        <v-card id="login" style="z-index: 3" v-if="displayLoginAccount" class="pa-5 z-index-check" title max-width="600" elevation="24">
+        <v-card id="login" v-if="displayLoginAccount" class="pa-5 z-index-check" title max-width="600" elevation="24">
                         <v-img class="leftbox"
                         id="geeb-off-login-img"
                         lazy-src="https://i.ibb.co/nQy9135/gravity-Bong.png"
@@ -83,7 +83,7 @@
 
             <v-row class="secondLanding" >
                 <v-col>
-                    <v-card class="pa-2 secondLandingPush" title max-width="370" color="white" elevation="24" shaped rounded>
+                    <v-card class="pa-2" title max-width="370" color="white" elevation="24" shaped rounded>
                     <v-card-text style="font-size: 2.1em; text-align:center; font-weight:500;">Next match</v-card-text>
                     <v-divider class="mx-8"></v-divider>
                     <v-card-subtitle><BaseTimer/></v-card-subtitle>
@@ -163,6 +163,7 @@
 import BaseTimer from "./BaseTimer"
 import {ref} from 'vue';
 import * as firebase from 'firebase';
+
 export default {
     props: ['queuedPlayers', 'currentPlayers', 'displayCreateAccount', 'displayLoginAccount'],
     components: {
@@ -173,12 +174,14 @@ export default {
         const password1 =ref("");
         const loginEmail =ref("");
         const loginPassword = ref("");
+
         const Login = () => {
           firebase.default.auth()
           .signInWithEmailAndPassword(loginEmail.value,loginPassword.value)
           .then(data => console.log(data))
           .catch(err => alert(err.message));
         }
+
         const Register = () => {
             firebase.default.auth()
             .createUserWithEmailAndPassword(email.value, password1.value)
@@ -210,8 +213,10 @@ export default {
   },
   methods: {
       onLoginSubmit() {
+
       },
       onRegisterSubmit(){
+
       }
   }
 }
@@ -221,7 +226,7 @@ export default {
     #landing-page {
         background-image: url('../background.jpg');
           /* background-color: #8f2c2c; */
-        height: 100vh;
+        height: 70vh;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -229,18 +234,13 @@ export default {
         padding-bottom: 5%; 
         padding-top: 2%
     }
-    .secondLanding {
-        background-color: #1F7087; 
-        margin-top: 5%; 
-        padding-left: 30px; 
-        padding-bottom: 100px;
-    }
     .bannerText {
         font-size: 1.9em!important;
         text-align:center;
     }
+
     .z-index-check {
-        z-index: 1;
+        z-index: 10;
         background-color: rgba(255, 255, 255, 0.753);
     }
     .computer-resize{
@@ -252,6 +252,8 @@ export default {
         height: 200px;
         z-index: 10;
     }
+
+
     .rightbox {
         float: right;
         width: 69%;
@@ -287,8 +289,11 @@ export default {
         margin-left:70px; 
         z-index:30;
     }
-    @media only screen and (max-width: 1900) {
-        
+    .secondLanding {
+        background-color: #1F7087; 
+        margin-top: 5%; 
+        padding-left: 30px; 
+        padding-bottom: 100px;
     }
     @media only screen and (max-width: 1600px) {
         .bannerText{
@@ -338,28 +343,22 @@ export default {
             left: 25%;
     }
     }
-    @media only screen and (max-width: 900px) {
-        .first-landing-page {
-            padding-bottom: 15%;
-        }
-    }
+
+
         @media only screen and (max-width: 900px) {
         .bannerText {
             font-size: 1.6em;
         }
         #landing-page {
             height: 70vh;
-            margin-bottom: 50%;
         }
         .computer-resize {
             left: -55px;
         }
         .secondLanding {
-        margin-top: 0%; 
-        padding-left: 1%; 
-        }
-        .secondLandingPush{
-            margin-top:50px;
-        }
+        margin-top: 50%; 
+        padding-left: 3px; 
     }
+    }
+
 </style>

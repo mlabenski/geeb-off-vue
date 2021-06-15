@@ -8,30 +8,31 @@
     <v-btn v-if="!showMobileNav"  @click="$router.push('game-room')" text>Spectate</v-btn>
     <v-btn v-if="!showMobileNav"  class="mr-3">Help</v-btn>
     <v-btn v-if="!showMobileNav" v-show="showOverlay=='false'" class="mr-3" @click="$router.push('account-details')" >Account Details</v-btn>
-    <v-divider inset vertical ></v-divider>
+    <v-divider v-if="!showMobileNav" inset vertical ></v-divider>
           <v-btn
         class="mr-4 ml-5"
         color="primary"
         v-show="showOverlay == 'true'"
         plain
       >
-        <span v-show="showOverlay == 'true'" @click="login">Log in</span>
+        <span v-if="showOverlay == 'true'" @click="login">Log in</span>
       </v-btn>
                 <v-btn
         class="mr-4 ml-5"
         color="primary"
         plain
+        v-if="!showMobileNav && !showOverlay"
       >
-        <span v-show="showOverlay == 'false'"  @click="showQueueModal">Enter Queue</span>
-      </v-btn>
+        <span  @click="showQueueModal">Enter Queue</span>
+              </v-btn>
                 <v-btn
         class="mr-4 ml-5"
         color="primary"
         v-show="showOverlay == 'true'"
         plain
       >
-        <v-icon left icon="mdi-handshake-outline"></v-icon>
-        <span v-show="showOverlay == 'true'" @click="showCreateAccountModal">Create Account</span>
+        <span v-show="showOverlay == 'true'" v-if="!showMobileNav" @click="showCreateAccountModal">Create Account</span>
+        <span v-show="showOverlay == 'true'" v-if="showMobileNav" @click="showCreateAccountModal">Create Acc</span>
       </v-btn>
 </v-app-bar>
 
