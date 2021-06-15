@@ -1,6 +1,5 @@
 <template>
         <v-sheet color="grey" elevation="1" height="65px" :width="timerLength">
-        <h2 style="color: white">{{timer}}</h2>
       </v-sheet>
 </template>
 

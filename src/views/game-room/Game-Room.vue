@@ -1,9 +1,16 @@
 <template>
   <playerNavBar v-if="currentPlayerList" :newStream="currentPlayerName" :playersArray="currentMatchPlayersList"></playerNavBar>
-  <v-container v-if="currentPlayerList" fluid>
-    <v-row>
+      <v-row>
       <RoundTimer  :numberOfRounds="numberOfRounds"></RoundTimer>
     </v-row>
+  <v-container v-if="currentPlayerList" fluid>
+            <v-row id="background-img" align-content="center">
+              <v-col xs="0" sm="0" md="1" lg="2" xl="2" ></v-col>
+          <v-col xs="12" sm="12" md="10" lg="8" xl="8" cols="12" >
+                <twitchVideo class="determineHeight" v-if="currentPlayerList" :newStream="currentPlayerName"></twitchVideo>
+          </v-col>
+          <v-col xs="0" sm="0" md="1" lg="2" xl="2"></v-col>
+        </v-row>
     <v-row>
       <VoteBar :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
     </v-row>
@@ -17,16 +24,6 @@
       <v-col>
       </v-col>
     </v-row>
-        <v-row id="background-img">
-          <v-col>
-          </v-col>
-          <v-col>
-                <twitchVideo v-if="currentPlayerList" :newStream="currentPlayerName"></twitchVideo>
-          </v-col>
-          <v-col>
-          </v-col>
-
-        </v-row>
   </v-container>
 </template>
 
@@ -180,7 +177,10 @@ export default {
      localUserData: '',
      allowedVote: false,
      halfwayUpdate: false,
-     userVoted: false
+     userVoted: false,
+     width: window.innerWidth,
+     height: window.innerHeight
+
     }
   }
 }
@@ -197,4 +197,59 @@ export default {
         position: relative;
         z-index: 1;
     }
+    .sizeIndication{
+        background-color: greenyellow;
+      }
+    .determineHeight {
+      height: 650px;
+    }
+    
+        @media only screen and (max-width: 1500px) {
+      .determineHeight {
+        height: 525px;
+      }
+      #background-img {
+        height: 80vh;
+      }
+            .sizeIndication{
+        background-color: yellow;
+      }
+    }
+        @media only screen and (max-width: 1364px) {
+      .determineHeight {
+        height: 495px;
+      }
+      #background-img {
+        height: 80vh;
+      }
+            .sizeIndication{
+        background-color: green;
+      }
+    }
+        @media only screen and (max-width: 960px) {
+      .determineHeight {
+        height: 420px;
+      }
+      #background-img {
+        height: 70vh;
+      }
+      .sizeIndication{
+        background-color: red;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .determineHeight {
+        height: 330px;
+      }
+      #background-img {
+        height: 65vh;
+      }
+      .sizeIndication{
+        background-color: orange;
+      }
+    }
+
+
+
 </style>

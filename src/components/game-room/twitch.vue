@@ -1,8 +1,8 @@
 <template>
         <iframe v-if="newStream"
     :src="url1+newStream+url3"
-    height="600px"
-    width="900px"
+    height="100%"
+    width="100%"
     allowfullscreen="true">
 </iframe>
 </template>
@@ -11,7 +11,7 @@
 
 export default {
   props: [
-    'newStream'
+    'newStream',
   ],
     data() {
         //cycle thru da streams
@@ -19,9 +19,13 @@ export default {
             url1: 'https://player.twitch.tv/?channel=',
             url3: '&parent=localhost',
             currentStream: 'rupturexx',
+            frameWidth: '400px',
+            frameHeight: '250px'
         }
         //c
     },
+    watch: {
+    }
 
 }
 </script>
