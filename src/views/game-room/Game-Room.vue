@@ -8,10 +8,16 @@
       <VoteBar :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
     </v-row>
     <v-row>
-        <v-btn flat @click="voteNo">Vote No</v-btn>
-        <v-btn flat @click="voteYes">Vote Yes</v-btn>
+      <v-col>
+      </v-col>
+      <v-col align="center">
+        <v-btn flat @click="voteNo" width="49%" left='true' style="background-color: red">Vote No</v-btn>
+        <v-btn flat @click="voteYes" width="49%" right='true' style="background-color: green">Vote Yes</v-btn>
+      </v-col>
+      <v-col>
+      </v-col>
     </v-row>
-        <v-row>
+        <v-row id="background-img">
           <v-col>
           </v-col>
           <v-col>
@@ -35,7 +41,6 @@ import { VoteBar } from '../../components/game-room/vote-bar'
 export default {
 
   created() {
-
     db.collection('match').onSnapshot((snapshotChange) => {
       this.currentMatchPlayersList = [];
       snapshotChange.forEach((doc) => {
@@ -69,7 +74,7 @@ export default {
         this.currentPlayerNumberOfVotes = doc.data().votes;
       })
     })
-          auth.onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
             console.log(`user is ${user}`)
             if (user) {
               this.localUserData = auth.currentUser.uid;
@@ -182,5 +187,14 @@ export default {
 </script>
 
 <style>
-
+    #background-img {
+        background-image: url('../../assets/background-img-geeboff.png');
+          /* background-color: #8f2c2c; */
+        height: 80vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        z-index: 1;
+    }
 </style>
