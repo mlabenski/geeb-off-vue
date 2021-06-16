@@ -11,17 +11,14 @@
           </v-col>
           <v-col xs="0" sm="0" md="1" lg="2" xl="2"></v-col>
 
-          <v-col sm="0" xl="4"></v-col>
-      <v-col cols="12" sm="12" xl="4" align="center" class="voteButtons"  >
+          <v-col sm="0" md="2" xl="4"></v-col>
+      <v-col cols="12" sm="12" md="8" xl="4" align="center" class="voteButtons"  >
         <v-btn flat @click="voteNo" width="49%" left='true' style="background-color: red">Vote No</v-btn>
         <v-btn flat @click="voteYes" width="49%" right='true' style="background-color: green">Vote Yes</v-btn>
       </v-col>
-      <v-col  sm="0" xl="4"></v-col>
-      
+      <v-col  sm="0" md="2" xl="4"></v-col>
+    <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
         </v-row>
-    <v-row class="element">
-      <VoteBar :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-    </v-row>
   </v-container>
 </template>
 
@@ -188,13 +185,12 @@ export default {
     #background-img {
         background-image: url('../../assets/background-img-geeboff.png');
           /* background-color: #8f2c2c; */
-        height: 84vh;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
         z-index: 1;
-        padding-top: 13%;
+        padding-top: 2%;
     }
     .sizeIndication{
         background-color: greenyellow;
@@ -202,8 +198,21 @@ export default {
     .determineHeight {
       height: 650px;
     }
-    .voteButtons {
-      margin-bottom: 15%;
+      .voteButtons{
+        padding-bottom: -5%;
+      }
+    @media only screen and (max-width: 1800px) {
+      .determineHeight {
+        height: 540px;
+      }
+      #background-img {
+      }
+            .sizeIndication{
+        background-color: yellow;
+      }
+      .voteButtons{
+        padding-bottom: -5%;
+      }
     }
     
         @media only screen and (max-width: 1500px) {
@@ -211,10 +220,12 @@ export default {
         height: 525px;
       }
       #background-img {
-        height: 80vh;
       }
             .sizeIndication{
         background-color: yellow;
+      }
+      .voteButtons{
+        padding-bottom: -5%;
       }
     }
         @media only screen and (max-width: 1364px) {
@@ -222,7 +233,6 @@ export default {
         height: 495px;
       }
       #background-img {
-        height: 80vh;
       }
             .sizeIndication{
         background-color: green;
@@ -233,7 +243,6 @@ export default {
         height: 420px;
       }
       #background-img {
-        height: 80vh;
       }
       .sizeIndication{
         background-color: red;
@@ -245,14 +254,12 @@ export default {
         height: 330px;
       }
       #background-img {
-        height: 75vh;
-        padding-top: 25%;
       }
       .sizeIndication{
         background-color: orange;
       }
       .voteButtons {
-      margin-bottom: 20%;
+      margin-bottom: 2%;
     }
 
     }
