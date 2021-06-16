@@ -49,6 +49,7 @@
         flat
         size="large"
         color="green"
+        @click="$router.push('game-room')"
       >
         Spectate Match
       </v-btn>

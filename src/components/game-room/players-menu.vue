@@ -1,9 +1,9 @@
 <template>
     <v-app-bar :extension-height="height" density="compact"  dark>
+      <v-app-bar-nav-icon @click.stop="openMobileNavBar = !openMobileNavBar" v-if="showMobileNav" right></v-app-bar-nav-icon>
         <v-app-bar-title style="color: green;">Current Geeber</v-app-bar-title>
         <v-app-bar-title style="color: green;" v-if="newStream">{{newStream}}</v-app-bar-title>
         <v-divider inset vertical></v-divider>
-        <v-app-bar-nav-icon @click.stop="openMobileNavBar = !openMobileNavBar" v-if="showMobileNav" right></v-app-bar-nav-icon>
         <v-container v-if="!showMobileNav" style="padding-bottom: 10px">
             <v-btn @click="openExtension" v-for="(player, playerKey) in playersArray" :player="player" :key="playerKey" text>{{player.name}}</v-btn>
         </v-container>

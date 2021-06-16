@@ -1,11 +1,11 @@
 <template>
-        <v-sheet color="white" elevation="1" height="75px" :width="whiteWidthRedSide">
+        <v-sheet color="white" elevation="1" height="65px" :width="whiteWidthRedSide">
       </v-sheet>
-      <v-sheet color="red" elevation="1" height="75px" :width="redWidth">
+      <v-sheet color="red" elevation="1" height="65px" :width="redWidth">
       </v-sheet>
-      <v-sheet color="green" elevation="1" height="75px"  :width="greenWidth">
+      <v-sheet color="green" elevation="1" height="65px"  :width="greenWidth">
       </v-sheet>
-      <v-sheet color="white" elevation="1" height="75px"  :width="whiteWidthGreenSide">
+      <v-sheet color="white" elevation="1" height="65px"  :width="whiteWidthGreenSide">
       </v-sheet>
 </template>
 
