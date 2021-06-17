@@ -16,7 +16,7 @@
         <v-btn flat @click="voteNo" width="49%" left='true' style="background-color: red">Vote No</v-btn>
         <v-btn flat @click="voteYes" width="49%" right='true' style="background-color: green">Vote Yes</v-btn>
       </v-col>
-      <v-col  sm="0" md="2" xl="4"></v-col>
+      <v-col  sm="1" md="4" xl="4"></v-col>
     <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
         </v-row>
   </v-container>

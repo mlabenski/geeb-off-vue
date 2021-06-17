@@ -2,6 +2,7 @@
     <div>
         <v-container fluid >
             <v-row id="landing-page" style="z-index: 1">
+                <Banner v-if="displayBanner"></Banner>
                 <v-col>
                 </v-col>
                 <v-col  style="z-index: 2">
@@ -161,12 +162,14 @@
 
 <script>
 import BaseTimer from "./BaseTimer"
+import Banner from "../banners/banner"
 import {ref} from 'vue';
 import * as firebase from 'firebase';
 export default {
     props: ['queuedPlayers', 'currentPlayers', 'displayCreateAccount', 'displayLoginAccount'],
     components: {
         BaseTimer,
+        Banner
     },
     setup() {
         const email = ref("");
@@ -206,6 +209,7 @@ export default {
     timeUntilMatch: "15:00",
     minutesUntilMatch: 0,
     secondsUntilMatch: 0,
+    displayBanner: true
     }
   },
   methods: {

@@ -18,6 +18,7 @@
         bottom
         temporary
         style="background-color: transparent"
+        
       >
       <v-container>
       <v-row style="padding-bottom: 10%;" v-for="(player, playerKey) in playersArray" :player="player" :key="playerKey">

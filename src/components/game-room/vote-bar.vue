@@ -53,9 +53,9 @@ export default {
       }
       else {
         this.greenWidth = '0%';
-        this.whiteWidthGreenSide='50%';
+        this.whiteWidthGreenSide='49%';
         this.redWidth = '0%';
-        this.whiteWidthRedSide = '50%';
+        this.whiteWidthRedSide = '49%';
         //the votes are in the middle
       }
     }
