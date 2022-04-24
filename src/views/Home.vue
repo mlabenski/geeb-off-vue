@@ -1,10 +1,10 @@
 <template>
   <Menu v-on:send="clickedQueue" v-on:createAccount="clickedCreateAccount" v-on:login="clickedLogin"></Menu>
-  <QueueForm v-if="displayQueueModal==true" @leaveModel="clickedLeaveModel"></QueueForm>
+  <QueueForm v-if="displayQueueModal===true" @leaveModel="clickedLeaveModel"></QueueForm>
   <FirstSection :displayLoginAccount="displayLoginAccount" :queuedPlayers="queuedPlayersList" :currentPlayers="currentMatchPlayersList" :displayCreateAccount="displayCreateAccount"></FirstSection>
   <SecondSection></SecondSection>
 
-      <button class="logout" @click="Logout">Logout</button>
+      <button class="logout" @click="Logout" />
 </template>
 
 <script>
@@ -13,8 +13,8 @@ import Menu from '../components/home/Menu.vue';
 import FirstSection from '../components/home/Home-First-Section.vue';
 import SecondSection from '../components/home/Home-Second-Section.vue';
 import { ref, onBeforeMount } from 'vue';
-import { db } from '../main';
-import { auth } from '../main';
+import  { db } from '@/main';
+import { auth } from '@/main';
 
 export default {
 

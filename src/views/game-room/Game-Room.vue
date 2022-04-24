@@ -4,7 +4,7 @@
       <RoundTimer  :numberOfRounds="numberOfRounds"></RoundTimer>
     </v-row>
   <v-container v-if="currentPlayerList" fluid>
-            <v-row id="background-img" align-content="center">
+            <v-row id="background-img" align-content="center" >
               <v-col xs="0" sm="0" md="1" lg="2" xl="2" ></v-col>
           <v-col xs="12" sm="12" md="10" lg="8" xl="8" cols="12" >
                 <twitchVideo class="determineHeight" v-if="currentPlayerList" :newStream="currentPlayerName"></twitchVideo>
@@ -16,9 +16,47 @@
         <v-btn flat @click="voteNo" width="49%" left='true' style="background-color: red">Vote No</v-btn>
         <v-btn flat @click="voteYes" width="49%" right='true' style="background-color: green">Vote Yes</v-btn>
       </v-col>
-      <v-col  sm="1" md="4" xl="4"></v-col>
-    <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
         </v-row>
+    <v-row no-gutters class="grey lighten-5">
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+      <v-col sm="1" md="1" xl="1">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+
+    </v-row>
+
   </v-container>
 </template>
 
@@ -196,14 +234,14 @@ export default {
         background-color: greenyellow;
       }
     .determineHeight {
-      height: 650px;
+      height: 720px;
     }
       .voteButtons{
         padding-bottom: -5%;
       }
     @media only screen and (max-width: 1800px) {
       .determineHeight {
-        height: 540px;
+        height: 680px;
       }
       #background-img {
       }
@@ -211,13 +249,13 @@ export default {
         background-color: yellow;
       }
       .voteButtons{
-        padding-bottom: -5%;
+        margin-bottom: 5%;
       }
     }
     
         @media only screen and (max-width: 1500px) {
       .determineHeight {
-        height: 525px;
+        height: 680px;
       }
       #background-img {
       }
@@ -230,7 +268,7 @@ export default {
     }
         @media only screen and (max-width: 1364px) {
       .determineHeight {
-        height: 495px;
+        height: 650px;
       }
       #background-img {
       }
@@ -240,7 +278,7 @@ export default {
     }
         @media only screen and (max-width: 960px) {
       .determineHeight {
-        height: 420px;
+        height: 610px;
       }
       #background-img {
       }
@@ -251,7 +289,7 @@ export default {
 
     @media only screen and (max-width: 600px) {
       .determineHeight {
-        height: 330px;
+        height: 580px;
       }
       #background-img {
       }

@@ -5,17 +5,19 @@ import router from './router'
 import store from './store'
 import firebase from 'firebase';
 import LoadScript from 'vue-plugin-load-script';
-const firebaseConfig = {
-    apiKey: "AIzaSyBi2QO7VDArDuwV7F0t_RzHTSvvgenPYJU",
-    authDomain: "geeb-off-functions.firebaseapp.com",
-    databaseURL: "https://geeb-off-functions.firebaseio.com",
-    projectId: "geeb-off-functions",
-    storageBucket: "geeb-off-functions.appspot.com",
-    messagingSenderId: "3979637654",
-    appId: "1:3979637654:web:c44699eac00cb4707a63b7"
-}
 
-firebase.initializeApp(firebaseConfig);
+
+console.log(process.env.VUE_APP_API_KEY)
+firebase.initializeApp({
+    apiKey: process.env.VUE_APP_API_KEY,
+    authDomain: process.env.VUE_APP_AUTH_DOMAIN,
+    databaseURL: process.env.VUE_APP_DATABASE_URL,
+    projectId: process.env.VUE_APP_PROJECT_ID,
+    storageBucket: process.env.VUE_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.VUE_APP_SENDER_ID,
+    appId: process.env.VUE_APP_APP_ID
+});
+
 
 export const auth = firebase.auth();
 export const db = firebase.firestore();

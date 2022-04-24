@@ -2,7 +2,7 @@
 <v-app-bar density="compact"  dark>
   <v-app-bar-nav-icon @click.stop="openMobileNavBar = !openMobileNavBar" v-if="showMobileNav"></v-app-bar-nav-icon>
 
-<v-img  src="https://i.ibb.co/KGv8hBF/geeb-off-logo-text.png" max-height="160" max-width="225" @click="$router.push('/')"></v-img>
+<v-img  src="https://i.ibb.co/KGv8hBF/geeb-off-logo-text.png" class="logoGeeb" max-height="160" max-width="225" @click="$router.push('/')"></v-img>
     <v-spacer v-if="!showMobileNav"></v-spacer>
     <v-btn v-show="showOverlay =='false'" @click="Logout">Log out </v-btn>
     <v-btn v-if="!showMobileNav"  @click="$router.push('game-room')" text>Spectate</v-btn>
@@ -15,7 +15,7 @@
         v-show="showOverlay == 'true'"
         plain
       >
-        <span v-if="showOverlay == 'true'" @click="login">Log in</span>
+        <span v-if="showOverlay == 'true'" class="login" @click="login">Log in</span>
       </v-btn>
                 <v-btn
         class="mr-4 ml-5"
@@ -31,8 +31,8 @@
         v-show="showOverlay == 'true'"
         plain
       >
-        <span v-show="showOverlay == 'true'" v-if="!showMobileNav" @click="showCreateAccountModal">Create Account</span>
-        <span v-show="showOverlay == 'true'" v-if="showMobileNav" @click="showCreateAccountModal">Create Acc</span>
+        <span v-show="showOverlay == 'true'" class="createAcc" v-if="!showMobileNav" @click="showCreateAccountModal">Create Account</span>
+        <span v-show="showOverlay == 'true'" class="createAcc"  v-if="showMobileNav" @click="showCreateAccountModal">Create Acc</span>
       </v-btn>
 </v-app-bar>
 
@@ -83,6 +83,23 @@
      @media only screen and (max-width: 1250px) {
         v-btn {
           font-size: 10px;
+        }
+        .createAcc {
+          font-size: .95em;
+          padding: 0,0,0,0;
+          margin: 0,0,0,25px;
+        }
+        .login {
+          font-size: .95em;
+          margin-left:15px;
+          margin-right:0px;
+          padding: 0,0,0,0;
+          float: right;
+          color: black;
+        }
+        .logoGeeb {
+          width: 145px;
+          height: 45px;
         }
     }
 </style>

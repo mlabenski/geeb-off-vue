@@ -1,9 +1,11 @@
-<template>
+<template v-if="bannerOneLocal">
         <v-banner
         single-line
         :sticky="sticky"
         top
+        right
         elevation="20"
+        style="padding-left:35%"
       >
         {{bannerOptions.error1.text}}
   
@@ -11,6 +13,7 @@
           <v-btn
             text
             color="deep-purple accent-4"
+            style="float: right"
           >
          {{bannerOptions.error1.button}}
           </v-btn>
@@ -23,10 +26,12 @@ export default {
     data() {
         return {
             sticky: false,
+            bannerOneLocal: true,
+            isBannerTwo: false,
             bannerOptions: {
                 error1: {
-                    text: 'You must be logged in for this action',
-                    button: 'Log in'
+                    text: 'Hello,  log in or learn more down below.',
+                    button: ''
                 },
                 error2: {
                     text: 'The username or password isnt correct',
@@ -42,6 +47,21 @@ export default {
                 }
             }
         }
+    },
+    methods: {
+        tutOne() {
+            this.bannerOneLocal = false;
+            var self = this;
+            setTimeout(function() {
+                self.bannerOneLocal = true;
+            }, 2000)
+            this.bannerOneLocal = false;
+        },
+        tutTwo(){
+        }
+    },
+    mounted() {
+        this.tutOne();
     }
 }
 </script>

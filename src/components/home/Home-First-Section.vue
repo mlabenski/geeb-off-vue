@@ -6,14 +6,14 @@
                 <v-col>
                 </v-col>
                 <v-col  style="z-index: 2">
-                    <v-card  v-if="displayCreateAccount == false && displayLoginAccount == false" class="pa-5 z-index-check" title max-width="800" elevation="24">
+                    <v-card  v-if="displayCreateAccount == false && displayLoginAccount == false" class="pa-5 z-index-check" title max-width="800" min-width="3" elevation="24">
                         <v-img
                         lazy-src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         max-height="400"
                         max-width="500"
                         src="https://i.ibb.co/nQy9135/gravity-Bong.png"
                         ></v-img>
-                    <v-card-text class="bannerText">Virtual Smoking Competition</v-card-text>
+                    <v-card-text class="bannerText">Virtual Toking Circle</v-card-text>
                     <v-divider class="mx-4"></v-divider>
                       <v-card-actions>
                         <v-btn class="computer-resize">In Queue: 20</v-btn>
@@ -216,7 +216,14 @@ export default {
       onLoginSubmit() {
       },
       onRegisterSubmit(){
+      },
+      removeBanner() {
+          this.displayBanner = true;
+          setTimeout(() => this.displayBanner = false, 5000);
       }
+  },
+  mounted() {
+      this.removeBanner();
   }
 }
 </script>
@@ -241,6 +248,7 @@ export default {
     }
     .bannerText {
         font-size: 1.9em!important;
+        line-height: 1.8;
         text-align:center;
     }
     .z-index-check {
@@ -291,12 +299,11 @@ export default {
         margin-left:70px; 
         z-index:30;
     }
-    @media only screen and (max-width: 1900) {
-        
-    }
     @media only screen and (max-width: 1600px) {
         .bannerText{
-            font-size: 1em;
+          font-size: 1.9em!important;
+          line-height: 1.8;
+          text-align:center;
         }
         .rightbox {
         float: right;
@@ -349,13 +356,22 @@ export default {
     }
         @media only screen and (max-width: 900px) {
         .bannerText {
-            font-size: 1.6em;
+          font-size: 1.9em!important;
+          line-height: 1.8;
+          text-align:center;
         }
         #landing-page {
-            height: 70vh;
-            margin-bottom: 50%;
+            background-size: 900px, 800px;
+            min-height: 570px;
+          padding-bottom: 120px;
+            margin-bottom: 50px;
         }
-        .computer-resize {
+
+          #landing-page {
+            height: 120vh;
+          }
+
+          .computer-resize {
             left: -55px;
         }
         .secondLanding {

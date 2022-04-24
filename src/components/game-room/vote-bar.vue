@@ -1,12 +1,10 @@
 <template>
-        <v-sheet color="white" elevation="1" height="65px" :width="whiteWidthRedSide">
+      <v-sheet v-if="currentPlayerNumberOfVotes>0" color="red" elevation="1" height="65px" >
       </v-sheet>
-      <v-sheet color="red" elevation="1" height="65px" :width="redWidth">
+      <v-sheet v-if="currentPlayerNumberOfVotes===0" color="white" elevation="1" height="65px" >
       </v-sheet>
-      <v-sheet color="green" elevation="1" height="65px"  :width="greenWidth">
-      </v-sheet>
-      <v-sheet color="white" elevation="1" height="65px"  :width="whiteWidthGreenSide">
-      </v-sheet>
+    <v-sheet v-if="currentPlayerNumberOfVotes<0" color="green" elevation="1" height="65px" >
+    </v-sheet>
 </template>
 
 <script>
@@ -32,7 +30,8 @@ export default {
       var whitePercent = 50-redWidthCalculation;
       var whitePercentString = whitePercent.toString();
       console.log(redPercent, whitePercent);
-      return [redPercent, whitePercentString];
+      //so whitepercent is passed as 50%
+      return [redPercent-5, whitePercentString-5];
     }
     
   },
@@ -53,9 +52,9 @@ export default {
       }
       else {
         this.greenWidth = '0%';
-        this.whiteWidthGreenSide='49%';
+        this.whiteWidthGreenSide='50%';
         this.redWidth = '0%';
-        this.whiteWidthRedSide = '49%';
+        this.whiteWidthRedSide = '50%';
         //the votes are in the middle
       }
     }
