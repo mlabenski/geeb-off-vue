@@ -1,62 +1,27 @@
 <template>
   <playerNavBar v-if="currentPlayerList" :newStream="currentPlayerName" :playersArray="currentMatchPlayersList"></playerNavBar>
-      <v-row>
-      <RoundTimer  :numberOfRounds="numberOfRounds"></RoundTimer>
-    </v-row>
+  <v-row>
+    <RoundTimer :numberOfRounds="numberOfRounds"></RoundTimer>
+  </v-row>
   <v-container v-if="currentPlayerList" fluid>
-            <v-row id="background-img" align-content="center" >
-              <v-col xs="0" sm="0" md="1" lg="2" xl="2" ></v-col>
-          <v-col xs="12" sm="12" md="10" lg="8" xl="8" cols="12" >
-                <twitchVideo class="determineHeight" v-if="currentPlayerList" :newStream="currentPlayerName"></twitchVideo>
-          </v-col>
-          <v-col xs="0" sm="0" md="1" lg="2" xl="2"></v-col>
+    <v-row id="background-img" align-content="center">
+      <v-col :cols="['0', '0', '1', '2', '2']"></v-col>
+      <v-col :cols="['12', '12', '10', '8', '8']">
+        <twitchVideo class="determineHeight" :newStream="currentPlayerName"></twitchVideo>
+      </v-col>
+      <v-col :cols="['0', '0', '1', '2', '2']"></v-col>
 
-          <v-col sm="0" md="2" xl="4"></v-col>
-      <v-col cols="12" sm="12" md="8" xl="4" align="center" class="voteButtons"  >
-        <v-btn flat @click="voteNo" width="49%" left='true' style="background-color: red">Vote No</v-btn>
-        <v-btn flat @click="voteYes" width="49%" right='true' style="background-color: green">Vote Yes</v-btn>
+      <v-col :cols="['0', '2', '4']"></v-col>
+      <v-col cols="12" sm="12" md="8" xl="4" align="center" class="voteButtons">
+        <v-btn flat @click="voteNo" width="49%" left='true' class="voteNo">Vote No</v-btn>
+        <v-btn flat @click="voteYes" width="49%" right='true' class="voteYes">Vote Yes</v-btn>
       </v-col>
-        </v-row>
-    <v-row no-gutters class="grey lighten-5">
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-      <v-col sm="1" md="1" xl="1">
-        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
-      </v-col>
-
     </v-row>
-
+    <v-row no-gutters class="grey lighten-5">
+      <v-col sm="1" md="1" xl="1" v-for="n in 12" :key="n">
+        <VoteBar class="element" :currentPlayerNumberOfVotes="currentPlayerNumberOfVotes"></VoteBar>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -219,7 +184,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+    .voteNo {
+      background-color: red;
+    }
+
+    .voteYes {
+      background-color: green;
+    }
     #background-img {
         background-image: url('../../assets/background-img-geeboff.png');
           /* background-color: #8f2c2c; */
