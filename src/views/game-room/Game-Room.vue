@@ -66,7 +66,7 @@ import playerNavBar from '../../components/game-room/players-menu';
 import RoundTimer from '../../components/game-room/round-timer';
 import { db } from '../../main';
 import { auth } from '../../main.js';
-import { VoteBar } from '../../components/game-room/vote-bar'
+import  VoteBar from '../../components/game-room/vote-bar'
 
 export default {
 
